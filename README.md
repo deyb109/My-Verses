@@ -1,1 +1,1 @@
-# study-buddy
+# My-Verses
