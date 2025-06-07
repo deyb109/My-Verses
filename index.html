@@ -2,236 +2,109 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>My Verses with Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Verses</title>
   <style>
-    /* --- Global & reset --- */
-    * {
-      box-sizing: border-box;
-    }
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #1877f2;
-      color: #1c1e21;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    /* --- LOGIN STYLES --- */
-    #loginPage {
-      background: white;
-      padding: 40px 50px;
-      border-radius: 8px;
-      width: 350px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      text-align: center;
-    }
-    #loginPage h1 {
-      color: #1877f2;
-      font-size: 40px;
-      margin-bottom: 20px;
-      font-weight: 700;
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    }
-    #loginPage input[type="email"],
-    #loginPage input[type="password"] {
-      width: 100%;
-      padding: 14px 15px;
-      margin: 8px 0;
-      border: 1px solid #dddfe2;
-      border-radius: 6px;
-      font-size: 16px;
-    }
-    #loginPage input[type="email"]:focus,
-    #loginPage input[type="password"]:focus {
-      border-color: #1877f2;
-      outline: none;
-      box-shadow: 0 0 5px #1877f2;
-    }
-    #loginPage button {
-      width: 100%;
-      background-color: #1877f2;
-      color: white;
-      border: none;
-      padding: 14px;
-      font-size: 18px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-      margin-top: 16px;
-      transition: background-color 0.3s ease;
-    }
-    #loginPage button:hover {
-      background-color: #155db2;
-    }
-    #loginPage .forgot {
-      margin-top: 12px;
-      font-size: 14px;
-      color: #1877f2;
-      cursor: pointer;
-      text-decoration: underline;
-    }
-    #loginPage .create-account {
-      margin-top: 20px;
-      font-weight: 600;
-      color: #42b72a;
-      cursor: pointer;
-    }
-    /* --- VERSES APP STYLES --- */
-    #versesPage {
-      display: none;
-      height: 100vh;
-      width: 100vw;
-      background-color: #f0f4f8;
-      display: flex;
       font-family: 'Segoe UI', sans-serif;
-      color: #333;
+      display: flex;
+      background: url('day-mountain.jpg') no-repeat center center fixed;
+      background-size: cover;
     }
+
     .sidebar {
       width: 220px;
-      background: #2e3a59;
+      background: rgba(46, 58, 89, 0.85); /* Slightly transparent so bg shows */
       color: #fff;
       padding: 20px;
       height: 100vh;
       overflow-y: auto;
     }
+
     .sidebar h2 {
       text-align: center;
       margin-bottom: 20px;
     }
+
     .book {
       margin: 10px 0;
       cursor: pointer;
       padding: 8px;
       border-radius: 5px;
+      user-select: none;
+      transition: background-color 0.3s ease;
     }
+
     .book:hover {
       background-color: #3f4c6b;
     }
+
     .content {
       flex: 1;
       padding: 30px;
+      background: rgba(255, 255, 255, 0.9); /* white bg with some transparency */
       overflow-y: auto;
-      background-image: url('https://raw.githubusercontent.com/yourusername/yourrepo/main/day-mountain.jpg');
-      background-size: cover;
-      background-position: center;
-      color: #fff;
-      text-shadow: 0 0 5px rgba(0,0,0,0.7);
+      max-height: 100vh;
     }
+
     .verse {
-      background: rgba(255, 255, 255, 0.85);
+      background: #ffffff;
       border-left: 4px solid #2e3a59;
       padding: 10px 15px;
       margin: 10px 0;
       box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-      color: #2e3a59;
-      border-radius: 4px;
-      text-shadow: none;
     }
+
     .verse strong {
       color: #2e3a59;
     }
+
     .form {
       margin-top: 20px;
-      background-color: #ffffffdd;
+      background-color: #ffffff;
       padding: 15px;
       box-shadow: 0 1px 5px rgba(0,0,0,0.2);
       border-radius: 8px;
-      color: #2e3a59;
     }
-    input, textarea, button {
+
+    input, textarea, select, button {
       width: 100%;
       margin-top: 10px;
       padding: 10px;
       font-size: 14px;
       border: 1px solid #ccc;
       border-radius: 4px;
+      box-sizing: border-box;
     }
+
     button {
       background-color: #2e3a59;
       color: white;
       border: none;
       cursor: pointer;
-      font-weight: 600;
+      transition: background-color 0.3s ease;
     }
+
     button:hover {
       background-color: #3f4c6b;
-    }
-    /* Responsive adjustments */
-    @media (max-width: 600px) {
-      #versesPage {
-        flex-direction: column;
-      }
-      .sidebar {
-        width: 100%;
-        height: auto;
-        display: flex;
-        overflow-x: auto;
-        padding: 10px;
-      }
-      .book {
-        flex: 1;
-        text-align: center;
-        margin: 0 5px;
-      }
-      .content {
-        padding: 15px;
-        height: auto;
-        background-image: none;
-        color: #333;
-        text-shadow: none;
-      }
     }
   </style>
 </head>
 <body>
-
-  <!-- LOGIN PAGE -->
-  <div id="loginPage">
-    <h1>facebook</h1>
-    <input type="email" placeholder="Email or phone number" id="email" />
-    <input type="password" placeholder="Password" id="password" />
-    <button onclick="login()">Log In</button>
-    <div class="forgot" onclick="alert('Password recovery not implemented yet')">Forgot Password?</div>
-    <div class="create-account" onclick="alert('Create account feature coming soon')">Create New Account</div>
+  <div class="sidebar">
+    <h2>My Verses</h2>
+    <div class="book" onclick="showVerses('mark')">Mark</div>
+    <div class="book" onclick="showVerses('corinthians')">1 Corinthians</div>
+    <div class="book" onclick="showVerses('psalms')">Psalms</div>
   </div>
 
-  <!-- VERSES PAGE -->
-  <div id="versesPage">
-    <div class="sidebar">
-      <h2>My Verses</h2>
-      <div class="book" onclick="showVerses('mark')">Mark</div>
-      <div class="book" onclick="showVerses('corinthians')">1 Corinthians</div>
-      <div class="book" onclick="showVerses('psalms')">Psalms</div>
-    </div>
-
-    <div class="content" id="verseDisplay">
-      <h2>Welcome to My Verses 🌿</h2>
-      <p>Click a book from the left to see the verses.</p>
-    </div>
+  <div class="content" id="verseDisplay">
+    <h2>Welcome to My Verses 🌿</h2>
+    <p>Click a book from the left to see the verses.</p>
   </div>
 
   <script>
-    // Dummy login function
-    function login() {
-      const email = document.getElementById('email').value.trim()
-      const password = document.getElementById('password').value.trim()
-
-      if (!email || !password) {
-        alert('Please fill in both email and password!')
-        return
-      }
-
-      alert('Login successful! Welcome, ' + email)
-
-      // Hide login, show verses app
-      document.getElementById('loginPage').style.display = 'none'
-      document.getElementById('versesPage').style.display = 'flex'
-    }
-
-    // Verses data
     const verses = {
       mark: [
         { ref: "Mark 10:27", text: "With man this is impossible, but not with God; all things are possible with God." },
@@ -245,22 +118,22 @@
         { ref: "Psalm 23:1", text: "The Lord is my shepherd; I shall not want." },
         { ref: "Psalm 46:1", text: "God is our refuge and strength, an ever-present help in trouble." }
       ]
-    }
+    };
 
-    let currentBook = ""
+    let currentBook = "";
 
     function showVerses(book) {
-      currentBook = book
-      const display = document.getElementById('verseDisplay')
-      display.innerHTML = `<h2>${book.toUpperCase()}</h2>`
+      currentBook = book;
+      const display = document.getElementById('verseDisplay');
+      display.innerHTML = `<h2>${book.toUpperCase()}</h2>`;
       verses[book].forEach(v => {
         display.innerHTML += `
           <div class="verse">
             <strong>${v.ref}</strong><br />
             ${v.text}
           </div>
-        `
-      })
+        `;
+      });
 
       display.innerHTML += `
         <div class="form">
@@ -269,9 +142,21 @@
           <textarea id="text" placeholder="Enter verse text here..."></textarea>
           <button onclick="addVerse()">Add Verse</button>
         </div>
-      `
+      `;
     }
 
     function addVerse() {
-      const ref = document.getElementById('ref').value.trim()
-      const text
+      const ref = document.getElementById('ref').value.trim();
+      const text = document.getElementById('text').value.trim();
+
+      if (!ref || !text) {
+        alert("Please fill in both fields.");
+        return;
+      }
+
+      verses[currentBook].push({ ref, text });
+      showVerses(currentBook);
+    }
+  </script>
+</body>
+</html>
