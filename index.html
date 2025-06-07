@@ -9,12 +9,13 @@
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
       display: flex;
-      background-color: #f0f4f8;
+      background: url('day-mountain.jpg') no-repeat center center fixed;
+      background-size: cover;
     }
 
     .sidebar {
       width: 220px;
-      background: #2e3a59;
+      background: rgba(46, 58, 89, 0.85); /* Slightly transparent so bg shows */
       color: #fff;
       padding: 20px;
       height: 100vh;
@@ -31,6 +32,8 @@
       cursor: pointer;
       padding: 8px;
       border-radius: 5px;
+      user-select: none;
+      transition: background-color 0.3s ease;
     }
 
     .book:hover {
@@ -40,6 +43,9 @@
     .content {
       flex: 1;
       padding: 30px;
+      background: rgba(255, 255, 255, 0.9); /* white bg with some transparency */
+      overflow-y: auto;
+      max-height: 100vh;
     }
 
     .verse {
@@ -69,6 +75,7 @@
       font-size: 14px;
       border: 1px solid #ccc;
       border-radius: 4px;
+      box-sizing: border-box;
     }
 
     button {
@@ -76,6 +83,7 @@
       color: white;
       border: none;
       cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
     button:hover {
@@ -110,22 +118,22 @@
         { ref: "Psalm 23:1", text: "The Lord is my shepherd; I shall not want." },
         { ref: "Psalm 46:1", text: "God is our refuge and strength, an ever-present help in trouble." }
       ]
-    }
+    };
 
-    let currentBook = ""
+    let currentBook = "";
 
     function showVerses(book) {
-      currentBook = book
-      const display = document.getElementById('verseDisplay')
-      display.innerHTML = `<h2>${book.toUpperCase()}</h2>`
+      currentBook = book;
+      const display = document.getElementById('verseDisplay');
+      display.innerHTML = `<h2>${book.toUpperCase()}</h2>`;
       verses[book].forEach(v => {
         display.innerHTML += `
           <div class="verse">
             <strong>${v.ref}</strong><br />
             ${v.text}
           </div>
-        `
-      })
+        `;
+      });
 
       display.innerHTML += `
         <div class="form">
@@ -134,35 +142,21 @@
           <textarea id="text" placeholder="Enter verse text here..."></textarea>
           <button onclick="addVerse()">Add Verse</button>
         </div>
-      `
+      `;
     }
 
     function addVerse() {
-      const ref = document.getElementById('ref').value.trim()
-      const text = document.getElementById('text').value.trim()
+      const ref = document.getElementById('ref').value.trim();
+      const text = document.getElementById('text').value.trim();
 
       if (!ref || !text) {
-        alert("Please fill in both fields.")
-        return
+        alert("Please fill in both fields.");
+        return;
       }
 
-      verses[currentBook].push({ ref, text })
-      showVerses(currentBook)
+      verses[currentBook].push({ ref, text });
+      showVerses(currentBook);
     }
-  </script> body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  display: flex;
-  background: url('day-mountain.jpg') no-repeat center center fixed;
-  background-size: cover;
-}
-
+  </script>
 </body>
 </html>
-
-  
-  
- 
-
-   
-
