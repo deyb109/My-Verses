@@ -4,13 +4,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>My Verses</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary: #2e2e2e;
+      --accent: #a29bfe;
+      --background: #fdfdfd;
+      --text: #3d3d3d;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Outfit', sans-serif;
       display: flex;
       background: url('day-mountain.jpg') no-repeat center center fixed;
       background-size: cover;
+      color: var(--text);
     }
 
     .sidebar {
@@ -20,91 +35,106 @@
       padding: 20px;
       height: 100vh;
       overflow-y: auto;
-      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
     }
 
     .sidebar h2 {
       text-align: center;
       margin-bottom: 20px;
-      font-size: 22px;
-      letter-spacing: 1px;
+      font-weight: 700;
     }
 
     .book {
       margin: 10px 0;
       cursor: pointer;
-      padding: 10px 14px;
-      border-radius: 6px;
+      padding: 10px 12px;
+      border-radius: 8px;
       user-select: none;
       transition: background-color 0.3s ease, transform 0.2s ease;
+      font-weight: 500;
     }
 
     .book:hover {
       background-color: #3f4c6b;
-      transform: translateX(4px);
+      transform: translateX(5px);
     }
 
     .content {
       flex: 1;
-      padding: 40px;
-      background: rgba(255, 255, 255, 0.93);
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.95);
       overflow-y: auto;
       max-height: 100vh;
     }
 
+    .content h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .content p {
+      font-size: 1rem;
+      color: #555;
+    }
+
     .verse {
       background: #ffffff;
-      border-left: 5px solid #2e3a59;
-      padding: 12px 20px;
+      border-left: 4px solid var(--accent);
+      padding: 12px 18px;
       margin: 15px 0;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      border-radius: 6px;
+      border-radius: 10px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+      font-size: 1.1rem;
+      font-weight: 500;
+      line-height: 1.6;
     }
 
     .verse strong {
-      color: #2e3a59;
-      font-size: 16px;
+      color: var(--accent);
     }
 
     .form {
       margin-top: 30px;
       background-color: #ffffff;
       padding: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      border-radius: 10px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
     .form h3 {
-      margin-top: 0;
-      color: #2e3a59;
+      margin-bottom: 10px;
+      color: var(--primary);
+      font-weight: 600;
     }
 
     input, textarea, button {
       width: 100%;
       margin-top: 10px;
       padding: 12px;
-      font-size: 14px;
+      font-size: 15px;
       border: 1px solid #ccc;
-      border-radius: 6px;
-      box-sizing: border-box;
-    }
-
-    textarea {
-      resize: vertical;
-      min-height: 80px;
+      border-radius: 8px;
+      font-family: 'Outfit', sans-serif;
     }
 
     button {
-      background-color: #2e3a59;
+      background-color: var(--primary);
       color: white;
       border: none;
       cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
     }
 
     button:hover {
       background-color: #3f4c6b;
-      transform: scale(1.02);
+    }
+
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #999;
     }
   </style>
 </head>
@@ -117,7 +147,7 @@
   </div>
 
   <div class="content" id="verseDisplay">
-    <h2>Welcome to My Verses 🌿</h2>
+    <h2>🌿 Welcome to My Verses</h2>
     <p>Click a book from the left to see the verses.</p>
   </div>
 
@@ -142,7 +172,8 @@
     function showVerses(book) {
       currentBook = book;
       const display = document.getElementById('verseDisplay');
-      display.innerHTML = `<h2>${book.toUpperCase()}</h2>`;
+      display.innerHTML = `<h2>${book.charAt(0).toUpperCase() + book.slice(1)}</h2>`;
+
       verses[book].forEach(v => {
         display.innerHTML += `
           <div class="verse">
@@ -154,7 +185,7 @@
 
       display.innerHTML += `
         <div class="form">
-          <h3>Add a New Verse to ${book.toUpperCase()}</h3>
+          <h3>Add a New Verse to ${book.charAt(0).toUpperCase() + book.slice(1)}</h3>
           <input type="text" id="ref" placeholder="e.g. ${book.charAt(0).toUpperCase() + book.slice(1)} 1:1" />
           <textarea id="text" placeholder="Enter verse text here..."></textarea>
           <button onclick="addVerse()">Add Verse</button>
@@ -177,4 +208,5 @@
   </script>
 </body>
 </html>
+
 
