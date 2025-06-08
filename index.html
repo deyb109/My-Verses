@@ -15,67 +15,83 @@
 
     .sidebar {
       width: 220px;
-      background: rgba(46, 58, 89, 0.85); /* Slightly transparent so bg shows */
+      background: rgba(46, 58, 89, 0.85);
       color: #fff;
       padding: 20px;
       height: 100vh;
       overflow-y: auto;
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
     }
 
     .sidebar h2 {
       text-align: center;
       margin-bottom: 20px;
+      font-size: 22px;
+      letter-spacing: 1px;
     }
 
     .book {
       margin: 10px 0;
       cursor: pointer;
-      padding: 8px;
-      border-radius: 5px;
+      padding: 10px 14px;
+      border-radius: 6px;
       user-select: none;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s ease, transform 0.2s ease;
     }
 
     .book:hover {
       background-color: #3f4c6b;
+      transform: translateX(4px);
     }
 
     .content {
       flex: 1;
-      padding: 30px;
-      background: rgba(255, 255, 255, 0.9); /* white bg with some transparency */
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.93);
       overflow-y: auto;
       max-height: 100vh;
     }
 
     .verse {
       background: #ffffff;
-      border-left: 4px solid #2e3a59;
-      padding: 10px 15px;
-      margin: 10px 0;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      border-left: 5px solid #2e3a59;
+      padding: 12px 20px;
+      margin: 15px 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      border-radius: 6px;
     }
 
     .verse strong {
       color: #2e3a59;
+      font-size: 16px;
     }
 
     .form {
-      margin-top: 20px;
+      margin-top: 30px;
       background-color: #ffffff;
-      padding: 15px;
-      box-shadow: 0 1px 5px rgba(0,0,0,0.2);
-      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      border-radius: 10px;
     }
 
-    input, textarea, select, button {
+    .form h3 {
+      margin-top: 0;
+      color: #2e3a59;
+    }
+
+    input, textarea, button {
       width: 100%;
       margin-top: 10px;
-      padding: 10px;
+      padding: 12px;
       font-size: 14px;
       border: 1px solid #ccc;
-      border-radius: 4px;
+      border-radius: 6px;
       box-sizing: border-box;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
     }
 
     button {
@@ -83,11 +99,12 @@
       color: white;
       border: none;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s ease, transform 0.2s ease;
     }
 
     button:hover {
       background-color: #3f4c6b;
+      transform: scale(1.02);
     }
   </style>
 </head>
@@ -160,3 +177,4 @@
   </script>
 </body>
 </html>
+
